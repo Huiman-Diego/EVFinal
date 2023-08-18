@@ -7,17 +7,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class DatabaseLoader implements CommandLineRunner {
 
-	private final InstrumentoRepository repositoryI;
+	private final JuegoRepository repositoryI;
 	private final MusicoRepository repositoryM;
 	private final EquipoRepository repositoryE;
 	private final IntegranteRepository repositoryN;
 
 	@Autowired
 	public DatabaseLoader(
-		InstrumentoRepository repositoryI,
-		 MusicoRepository repositoryM,
-		 EquipoRepository repositoryE,
-		 IntegranteRepository repositoryN) {
+		JuegoRepository repositoryI,
+		MusicoRepository repositoryM,
+		EquipoRepository repositoryE,
+		IntegranteRepository repositoryN) {
 		this.repositoryI = repositoryI;
 		this.repositoryM = repositoryM;
 		this.repositoryE = repositoryE;
@@ -27,16 +27,16 @@ public class DatabaseLoader implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 		
-		Instrumento iVoz = new Instrumento("Voz", "Viento", "Voz humana");
-		Instrumento iGuitarrElectrica = new Instrumento("Guitarra Eléctrica", "Eléctrica", "de madera, SIN caja de resonancia, 6 cuerdas templadas metálicas, pastillas y amplificador");
-		Instrumento iBajo = new Instrumento("Bajo", "Eléctrico", "Ritmos");
-		this.repositoryI.save(new Instrumento("Guitarra Acústica", "Cuerda", "de madera, con caja de resonancia, 6 cuerdas templadas"));
-		this.repositoryI.save(new Instrumento("Ukelele","Cuerda","de madera, con caja de resonancia pequeña, 4 cuerdas templadas"));
-		this.repositoryI.save(new Instrumento("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));
-		this.repositoryI.save(iVoz);
-		this.repositoryI.save(iGuitarrElectrica);
-		this.repositoryI.save(iBajo);
-		this.repositoryI.save(new Instrumento("Batería", "Percusión", "Percisiones"));
+		Juego iValorant = new Juego("Valorant", "Multijugador", "Disp");
+		Juego iGtaV = new Juego("GTA V", "Rol", "Juegos en los que asumes el papel de un personaje");
+		Juego iCandyCrush = new Juego("Candy Crush", "Casuales", "Juegos sencillos y de facil acceso");
+		this.repositoryI.save(new Juego("Guitarra Acústica", "Cuerda", "de madera, con caja de resonancia, 6 cuerdas templadas"));
+		this.repositoryI.save(new Juego("Ukelele","Cuerda","de madera, con caja de resonancia pequeña, 4 cuerdas templadas"));
+		this.repositoryI.save(new Juego("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));
+		this.repositoryI.save(iValorant);
+		this.repositoryI.save(iGtaV);
+		this.repositoryI.save(iCandyCrush);
+		this.repositoryI.save(new Juego("Minecraft", "Supervivencia", "Crear todo lo que quieras"));
 
 		Musico mFreddie = new Musico("Freddie");
 		Musico mBrian = new Musico("Brian");
@@ -51,11 +51,11 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repositoryE.save(bAstralis);
 		this.repositoryE.save(bFnatic);
 
-		Integrante intFreddie = new Integrante(bAstralis, mFreddie, iVoz);
+		Integrante intFreddie = new Integrante(bAstralis, mFreddie, iValorant);
 		this.repositoryN.save(intFreddie);
-		Integrante intBrian = new Integrante(bAstralis, mBrian, iGuitarrElectrica);
+		Integrante intBrian = new Integrante(bAstralis, mBrian, iGtaV);
 		this.repositoryN.save(intBrian);
-		Integrante intRogerWaters = new Integrante(bFnatic, mRogerWaters, iBajo);
+		Integrante intRogerWaters = new Integrante(bFnatic, mRogerWaters, iCandyCrush);
 		this.repositoryN.save(intRogerWaters);
 
 

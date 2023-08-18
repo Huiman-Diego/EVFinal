@@ -3,18 +3,18 @@ const {useState, useEffect} = require('react');
 const {useParams, Link} = require('react-router-dom');
 const client = require('../client');
 
-const PageEditarInstrumento = ()=>{
+const PageEditarJuego = ()=>{
 
     const {id} = useParams();
-    const [instrumento, setInstrumento] = useState({});
+    const [juego, setJuego] = useState({});
 
     useEffect(()=>{
         client({
             method: 'GET',
-            path: '/api/instrumentos/'+id,
+            path: '/api/juegos/'+id,
             headers: {'Content-Type': 'application/json'}
         }).done((response)=>{
-            setInstrumento(response.entity)
+            setJuego(response.entity)
         })    
     },[])
 
@@ -22,15 +22,15 @@ const PageEditarInstrumento = ()=>{
         e.preventDefault();
         client({
             method: 'PATCH',
-            path: '/api/instrumentos/'+id,
+            path: '/api/juegos/'+id,
             headers: {'Content-Type': 'application/json'},
-            entity: instrumento
+            entity: juego
         }).done(()=>window.location = "/")
     }
 
     return(
         <>
-            <h1>Editar Instrumento: {id}</h1>
+            <h1>Editar Juegos: {id}</h1>
 
             <form onSubmit={handleSubmit}>
 
@@ -38,27 +38,27 @@ const PageEditarInstrumento = ()=>{
                 <input 
                     type="text"
                     name="nombre"
-                    value={instrumento.nombre}
-                    onChange={(e)=>{setInstrumento({...instrumento, nombre: e.target.value})}} />
+                    value={juego.nombre}
+                    onChange={(e)=>{setJuego({...juego, nombre: e.target.value})}} />
                 <br/>
 
                 <label>Categoría</label>
                 <input 
                     type="text"
                     name="categoria"
-                    value={instrumento.categoria}
-                    onChange={(e)=>{setInstrumento({...instrumento, categoria: e.target.value})}} />
+                    value={juego.categoria}
+                    onChange={(e)=>{setJuego({...juego, categoria: e.target.value})}} />
                 <br/>
                 
                 <label>Descripción</label>
                 <input 
                     type="text"
                     name="descripcion"
-                    value={instrumento.descripcion}
-                    onChange={(e)=>{setInstrumento({...instrumento, descripcion: e.target.value})}} />
+                    value={juego.descripcion}
+                    onChange={(e)=>{setJuego({...juego, descripcion: e.target.value})}} />
                 <br/>
                 
-                <input type='submit' value={`Editar Instrumento ${id}`} />
+                <input type='submit' value={`Editar Juego ${id}`} />
             </form>
             <Link to="/">Volver</Link>
         </>
@@ -66,4 +66,4 @@ const PageEditarInstrumento = ()=>{
 
 }
 
-module.exports = PageEditarInstrumento
+module.exports = PageEditarJuego

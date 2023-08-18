@@ -3,21 +3,21 @@ const ReactDOM = require('react-dom');
 const {createBrowserRouter, RouterProvider} = require('react-router-dom');
 
 const PageHome = require('./pages/home');
-const PageVerInstrumento = require('./pages/ver-instrumento');
-const PageNuevoInstrumento = require('./pages/nuevo-instrumento');
 const PageNuevoMusico = require('./pages/nuevo-musico');
 const PageEditarMusico = require('./pages/editar-musico');
-const PageEditarInstrumento = require('./pages/editar-instrumento');
 const PageNuevoIntegrante = require('./pages/nuevo-integrante');
 const PageVerEquipo = require('./pages/ver-equipo');
+const PageVerJuego = require('./pages/ver-juego');
+const PageNuevoJuego = require('./pages/nuevo-juego');
+const PageEditarJuego = require('./pages/editar-juego');
 
 const router = createBrowserRouter([
 	{path: '/', element: <PageHome />},
-	{path: '/ver-instrumento/:id', element: <PageVerInstrumento />},
-	{path: '/nuevo-instrumento', element: <PageNuevoInstrumento />},
+	{path: '/ver-juego/:id', element: <PageVerJuego />},
+	{path: '/nuevo-juego', element: <PageNuevoJuego />},
 	{path: '/nuevo-musico', element: <PageNuevoMusico />},
 	{path: '/editar-musico/:id', element: <PageEditarMusico />},
-	{path: '/editar-instrumento/:id', element: <PageEditarInstrumento />},
+	{path: '/editar-juego/:id', element: <PageEditarJuego />},
 	{path: '/ver-equipo/:id', element: <PageVerEquipo />},
 	{path: '/ver-equipo/:id/nuevo-integrante', element: <PageNuevoIntegrante />},
 ])

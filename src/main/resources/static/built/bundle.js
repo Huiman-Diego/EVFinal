@@ -40800,22 +40800,22 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
   createBrowserRouter = _require.createBrowserRouter,
   RouterProvider = _require.RouterProvider;
 var PageHome = __webpack_require__(/*! ./pages/home */ "./src/main/js/pages/home.js");
-var PageVerInstrumento = __webpack_require__(/*! ./pages/ver-instrumento */ "./src/main/js/pages/ver-instrumento.js");
-var PageNuevoInstrumento = __webpack_require__(/*! ./pages/nuevo-instrumento */ "./src/main/js/pages/nuevo-instrumento.js");
 var PageNuevoMusico = __webpack_require__(/*! ./pages/nuevo-musico */ "./src/main/js/pages/nuevo-musico.js");
 var PageEditarMusico = __webpack_require__(/*! ./pages/editar-musico */ "./src/main/js/pages/editar-musico.js");
-var PageEditarInstrumento = __webpack_require__(/*! ./pages/editar-instrumento */ "./src/main/js/pages/editar-instrumento.js");
 var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
 var PageVerEquipo = __webpack_require__(/*! ./pages/ver-equipo */ "./src/main/js/pages/ver-equipo.js");
+var PageVerJuego = __webpack_require__(/*! ./pages/ver-juego */ "./src/main/js/pages/ver-juego.js");
+var PageNuevoJuego = __webpack_require__(/*! ./pages/nuevo-juego */ "./src/main/js/pages/nuevo-juego.js");
+var PageEditarJuego = __webpack_require__(/*! ./pages/editar-juego */ "./src/main/js/pages/editar-juego.js");
 var router = createBrowserRouter([{
   path: '/',
   element: /*#__PURE__*/React.createElement(PageHome, null)
 }, {
-  path: '/ver-instrumento/:id',
-  element: /*#__PURE__*/React.createElement(PageVerInstrumento, null)
+  path: '/ver-juego/:id',
+  element: /*#__PURE__*/React.createElement(PageVerJuego, null)
 }, {
-  path: '/nuevo-instrumento',
-  element: /*#__PURE__*/React.createElement(PageNuevoInstrumento, null)
+  path: '/nuevo-juego',
+  element: /*#__PURE__*/React.createElement(PageNuevoJuego, null)
 }, {
   path: '/nuevo-musico',
   element: /*#__PURE__*/React.createElement(PageNuevoMusico, null)
@@ -40823,8 +40823,8 @@ var router = createBrowserRouter([{
   path: '/editar-musico/:id',
   element: /*#__PURE__*/React.createElement(PageEditarMusico, null)
 }, {
-  path: '/editar-instrumento/:id',
-  element: /*#__PURE__*/React.createElement(PageEditarInstrumento, null)
+  path: '/editar-juego/:id',
+  element: /*#__PURE__*/React.createElement(PageEditarJuego, null)
 }, {
   path: '/ver-equipo/:id',
   element: /*#__PURE__*/React.createElement(PageVerEquipo, null)
@@ -40867,10 +40867,10 @@ module.exports = rest.wrap(mime, {
 
 /***/ }),
 
-/***/ "./src/main/js/pages/editar-instrumento.js":
-/*!*************************************************!*\
-  !*** ./src/main/js/pages/editar-instrumento.js ***!
-  \*************************************************/
+/***/ "./src/main/js/pages/editar-juego.js":
+/*!*******************************************!*\
+  !*** ./src/main/js/pages/editar-juego.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -40894,74 +40894,74 @@ var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/reac
   useParams = _require2.useParams,
   Link = _require2.Link;
 var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var PageEditarInstrumento = function PageEditarInstrumento() {
+var PageEditarJuego = function PageEditarJuego() {
   var _useParams = useParams(),
     id = _useParams.id;
   var _useState = useState({}),
     _useState2 = _slicedToArray(_useState, 2),
-    instrumento = _useState2[0],
-    setInstrumento = _useState2[1];
+    juego = _useState2[0],
+    setJuego = _useState2[1];
   useEffect(function () {
     client({
       method: 'GET',
-      path: '/api/instrumentos/' + id,
+      path: '/api/juegos/' + id,
       headers: {
         'Content-Type': 'application/json'
       }
     }).done(function (response) {
-      setInstrumento(response.entity);
+      setJuego(response.entity);
     });
   }, []);
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
     client({
       method: 'PATCH',
-      path: '/api/instrumentos/' + id,
+      path: '/api/juegos/' + id,
       headers: {
         'Content-Type': 'application/json'
       },
-      entity: instrumento
+      entity: juego
     }).done(function () {
       return window.location = "/";
     });
   };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Instrumento: ", id), /*#__PURE__*/React.createElement("form", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Editar Juegos: ", id), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     name: "nombre",
-    value: instrumento.nombre,
+    value: juego.nombre,
     onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
+      setJuego(_objectSpread(_objectSpread({}, juego), {}, {
         nombre: e.target.value
       }));
     }
   }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     name: "categoria",
-    value: instrumento.categoria,
+    value: juego.categoria,
     onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
+      setJuego(_objectSpread(_objectSpread({}, juego), {}, {
         categoria: e.target.value
       }));
     }
   }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", null, "Descripci\xF3n"), /*#__PURE__*/React.createElement("input", {
     type: "text",
     name: "descripcion",
-    value: instrumento.descripcion,
+    value: juego.descripcion,
     onChange: function onChange(e) {
-      setInstrumento(_objectSpread(_objectSpread({}, instrumento), {}, {
+      setJuego(_objectSpread(_objectSpread({}, juego), {}, {
         descripcion: e.target.value
       }));
     }
   }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
     type: "submit",
-    value: "Editar Instrumento ".concat(id)
+    value: "Editar Juego ".concat(id)
   })), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageEditarInstrumento;
+module.exports = PageEditarJuego;
 
 /***/ }),
 
@@ -41077,7 +41077,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, PageHome);
     _this = _super.call(this, props);
     _this.state = {
-      instrumentos: [],
+      juegos: [],
       musicos: [],
       equipos: []
     };
@@ -41089,10 +41089,10 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
       client({
         method: 'GET',
-        path: '/api/instrumentos'
+        path: '/api/juegos'
       }).done(function (response) {
         _this2.setState({
-          instrumentos: response.entity._embedded.instrumentos
+          juegos: response.entity._embedded.juegos
         });
       });
       client({
@@ -41125,13 +41125,13 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
           "width": "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Instrumentos",
-        emoji: "\uD83C\uDFB8"
-      }), /*#__PURE__*/React.createElement(InstrumentoList, {
-        instrumentos: this.state.instrumentos
+        entidad: "Juego",
+        emoji: "\uD83C\uDFAE"
+      }), /*#__PURE__*/React.createElement(JuegoList, {
+        juegos: this.state.juegos
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nuevo-instrumento"
-      }, "Nuevo Instrumento")), /*#__PURE__*/React.createElement("div", {
+        to: "/nuevo-juego"
+      }, "Nuevo Juego")), /*#__PURE__*/React.createElement("div", {
         style: {
           "width": "calc(100% / 3)"
         }
@@ -41161,28 +41161,28 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
 var Titulo = function Titulo(props) {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, props.emoji, " - ", props.entidad), /*#__PURE__*/React.createElement("span", null, "Listado completo de ", props.entidad.toLowerCase(), ":"), /*#__PURE__*/React.createElement("hr", null));
 };
-var InstrumentoList = /*#__PURE__*/function (_React$Component2) {
-  _inherits(InstrumentoList, _React$Component2);
-  var _super2 = _createSuper(InstrumentoList);
-  function InstrumentoList() {
-    _classCallCheck(this, InstrumentoList);
+var JuegoList = /*#__PURE__*/function (_React$Component2) {
+  _inherits(JuegoList, _React$Component2);
+  var _super2 = _createSuper(JuegoList);
+  function JuegoList() {
+    _classCallCheck(this, JuegoList);
     return _super2.apply(this, arguments);
   }
-  _createClass(InstrumentoList, [{
+  _createClass(JuegoList, [{
     key: "render",
     value: function render() {
-      var instrumentos = this.props.instrumentos.map(function (instrumento) {
-        return /*#__PURE__*/React.createElement(Instrumento, {
-          key: instrumento._links.self.href,
-          instrumento: instrumento
+      var juegos = this.props.juegos.map(function (juego) {
+        return /*#__PURE__*/React.createElement(Juego, {
+          key: juego._links.self.href,
+          juego: juego
         });
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), instrumentos));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), juegos));
     }
   }]);
-  return InstrumentoList;
+  return JuegoList;
 }(React.Component);
 var MusicoList = /*#__PURE__*/function (_React$Component3) {
   _inherits(MusicoList, _React$Component3);
@@ -41230,25 +41230,25 @@ var EquipoList = /*#__PURE__*/function (_React$Component4) {
   }]);
   return EquipoList;
 }(React.Component);
-var Instrumento = /*#__PURE__*/function (_React$Component5) {
-  _inherits(Instrumento, _React$Component5);
-  var _super5 = _createSuper(Instrumento);
-  function Instrumento() {
-    _classCallCheck(this, Instrumento);
+var Juego = /*#__PURE__*/function (_React$Component5) {
+  _inherits(Juego, _React$Component5);
+  var _super5 = _createSuper(Juego);
+  function Juego() {
+    _classCallCheck(this, Juego);
     return _super5.apply(this, arguments);
   }
-  _createClass(Instrumento, [{
+  _createClass(Juego, [{
     key: "render",
     value: function render() {
-      var id = this.props.instrumento._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.instrumento.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/ver-instrumento/".concat(id)
+      var id = this.props.juego._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.juego.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-juego/".concat(id)
       }, "Ver"), " |", /*#__PURE__*/React.createElement(Link, {
-        to: "/editar-instrumento/".concat(id)
+        to: "/editar-juego/".concat(id)
       }, "Editar")));
     }
   }]);
-  return Instrumento;
+  return Juego;
 }(React.Component);
 var Musico = /*#__PURE__*/function (_React$Component6) {
   _inherits(Musico, _React$Component6);
@@ -41287,95 +41287,6 @@ var Equipo = /*#__PURE__*/function (_React$Component7) {
   return Equipo;
 }(React.Component);
 module.exports = PageHome;
-
-/***/ }),
-
-/***/ "./src/main/js/pages/nuevo-instrumento.js":
-/*!************************************************!*\
-  !*** ./src/main/js/pages/nuevo-instrumento.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
-function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
-var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
-  Link = _require.Link;
-var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
-  useState = _require2.useState;
-var PageNuevoInstrumento = function PageNuevoInstrumento() {
-  var _useState = useState(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    nombre = _useState2[0],
-    setNombre = _useState2[1];
-  var _useState3 = useState(''),
-    _useState4 = _slicedToArray(_useState3, 2),
-    categoria = _useState4[0],
-    setCategoria = _useState4[1];
-  var _useState5 = useState(''),
-    _useState6 = _slicedToArray(_useState5, 2),
-    descripcion = _useState6[0],
-    setDescripcion = _useState6[1];
-  var handleSubmit = function handleSubmit(event) {
-    event.preventDefault();
-    client({
-      method: 'POST',
-      path: '/api/instrumentos',
-      entity: {
-        nombre: nombre,
-        categoria: categoria,
-        descripcion: descripcion
-      },
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).done(function () {
-      window.location = '/';
-    });
-  };
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Instrumento"), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleSubmit
-  }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "nombre"
-  }, "Nombre"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "nombre",
-    name: "nombre",
-    onChange: function onChange(e) {
-      return setNombre(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "categoria"
-  }, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    id: "categoria",
-    name: "categoria",
-    onChange: function onChange(e) {
-      return setCategoria(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
-    htmlFor: "descripcion"
-  }, "Descripcion"), /*#__PURE__*/React.createElement("textarea", {
-    cols: 30,
-    id: "descripcion",
-    name: "descripcion",
-    onChange: function onChange(e) {
-      return setDescripcion(e.target.value);
-    }
-  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
-    type: "submit",
-    value: "Nuevo Instrumento"
-  })), /*#__PURE__*/React.createElement(Link, {
-    to: "/"
-  }, "Volver"));
-};
-module.exports = PageNuevoInstrumento;
 
 /***/ }),
 
@@ -41498,6 +41409,95 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
   }, "Volver"));
 };
 module.exports = NuevoIntegrantePage;
+
+/***/ }),
+
+/***/ "./src/main/js/pages/nuevo-juego.js":
+/*!******************************************!*\
+  !*** ./src/main/js/pages/nuevo-juego.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require.Link;
+var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require2.useState;
+var PageNuevoJuego = function PageNuevoJuego() {
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    nombre = _useState2[0],
+    setNombre = _useState2[1];
+  var _useState3 = useState(''),
+    _useState4 = _slicedToArray(_useState3, 2),
+    categoria = _useState4[0],
+    setCategoria = _useState4[1];
+  var _useState5 = useState(''),
+    _useState6 = _slicedToArray(_useState5, 2),
+    descripcion = _useState6[0],
+    setDescripcion = _useState6[1];
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    client({
+      method: 'POST',
+      path: '/api/juegos',
+      entity: {
+        nombre: nombre,
+        categoria: categoria,
+        descripcion: descripcion
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).done(function () {
+      window.location = '/';
+    });
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Juego"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("label", {
+    htmlFor: "nombre"
+  }, "Nombre"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "nombre",
+    name: "nombre",
+    onChange: function onChange(e) {
+      return setNombre(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "categoria"
+  }, "Categor\xEDa"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "categoria",
+    name: "categoria",
+    onChange: function onChange(e) {
+      return setCategoria(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("label", {
+    htmlFor: "descripcion"
+  }, "Descripcion"), /*#__PURE__*/React.createElement("textarea", {
+    cols: 30,
+    id: "descripcion",
+    name: "descripcion",
+    onChange: function onChange(e) {
+      return setDescripcion(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Nuevo Juego"
+  })), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = PageNuevoJuego;
 
 /***/ }),
 
@@ -41625,10 +41625,10 @@ module.exports = PageVerEquipo;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/ver-instrumento.js":
-/*!**********************************************!*\
-  !*** ./src/main/js/pages/ver-instrumento.js ***!
-  \**********************************************/
+/***/ "./src/main/js/pages/ver-juego.js":
+/*!****************************************!*\
+  !*** ./src/main/js/pages/ver-juego.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41646,27 +41646,27 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
 var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
   useState = _require2.useState,
   useEffect = _require2.useEffect;
-var PageVerInstrumento = function PageVerInstrumento(props) {
+var PageVerJuego = function PageVerJuego() {
   // const id = props.match.params.id;
   var _useParams = useParams(),
     id = _useParams.id;
   var _useState = useState({}),
     _useState2 = _slicedToArray(_useState, 2),
-    instrumento = _useState2[0],
-    setInstrumento = _useState2[1];
+    juego = _useState2[0],
+    setJuego = _useState2[1];
   useEffect(function () {
     client({
       method: 'GET',
-      path: '/api/instrumentos/' + id
+      path: '/api/juegos/' + id
     }).done(function (response) {
-      setInstrumento(response.entity);
+      setJuego(response.entity);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Instrumento"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, instrumento.nombre)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Categor\xEDa"), /*#__PURE__*/React.createElement("td", null, instrumento.categoria)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Descripci\xF3n"), /*#__PURE__*/React.createElement("td", null, instrumento.descripcion))), /*#__PURE__*/React.createElement(Link, {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Ver Juegos"), /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, juego.nombre)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Categor\xEDa"), /*#__PURE__*/React.createElement("td", null, juego.categoria)), /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Descripci\xF3n"), /*#__PURE__*/React.createElement("td", null, juego.descripcion))), /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageVerInstrumento;
+module.exports = PageVerJuego;
 
 /***/ }),
 

@@ -5,37 +5,37 @@ const {useState, useEffect} = require('react');
 
 
 
-const PageVerInstrumento = (props) => {
+const PageVerJuego = () => {
 
     // const id = props.match.params.id;
     let { id } = useParams();
-    const [instrumento, setInstrumento] = useState({});
+    const [juego, setJuego] = useState({});
 
     useEffect(() => {
         client({
             method: 'GET',
-            path: '/api/instrumentos/' + id
+            path: '/api/juegos/' + id
         }).done(response => {
-            setInstrumento(response.entity);
+            setJuego(response.entity);
         });
     }, []);
 
 
     return (
         <>
-            <h1>Ver Instrumento</h1>
+            <h1>Ver Juegos</h1>
             <table>
                 <tr>
                     <th>Nombre</th>
-                    <td>{instrumento.nombre}</td>
+                    <td>{juego.nombre}</td>
                 </tr>
                 <tr>
                     <th>Categoría</th>
-                    <td>{instrumento.categoria}</td>
+                    <td>{juego.categoria}</td>
                 </tr>
                 <tr>
                     <th>Descripción</th>
-                    <td>{instrumento.descripcion}</td>
+                    <td>{juego.descripcion}</td>
                 </tr>
             </table>
 
@@ -44,4 +44,4 @@ const PageVerInstrumento = (props) => {
     )
 }
 
-module.exports = PageVerInstrumento;
+module.exports = PageVerJuego;

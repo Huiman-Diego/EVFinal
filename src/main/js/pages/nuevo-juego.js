@@ -3,7 +3,7 @@ const client = require('../client');
 const { Link } = require('react-router-dom');
 const { useState } = require('react');
 
-const PageNuevoInstrumento = () => {
+const PageNuevoJuego = () => {
 
     const [nombre, setNombre] = useState('');
     const [categoria, setCategoria] = useState('');
@@ -13,7 +13,7 @@ const PageNuevoInstrumento = () => {
         event.preventDefault();
         client({
             method: 'POST',
-            path: '/api/instrumentos',
+            path: '/api/juegos',
             entity: { nombre: nombre, categoria: categoria, descripcion: descripcion },
             headers: { 'Content-Type': 'application/json' }
         }).done(() => {
@@ -23,7 +23,7 @@ const PageNuevoInstrumento = () => {
 
     return (
         <>
-            <h1>Nuevo Instrumento</h1>
+            <h1>Nuevo Juego</h1>
             <form onSubmit={handleSubmit}>
             <label htmlFor='nombre'>Nombre</label>
                 <input type="text" id="nombre" name="nombre" onChange={(e)=>setNombre(e.target.value)} />
@@ -35,11 +35,11 @@ const PageNuevoInstrumento = () => {
                 <textarea cols={30} id="descripcion" name="descripcion" onChange={(e)=>setDescripcion(e.target.value)}></textarea>
                 <br />
                 <br />
-                <input type="submit" value="Nuevo Instrumento" />
+                <input type="submit" value="Nuevo Juego" />
             </form>
             <Link to="/">Volver</Link>
         </>
     )
 }
 
-module.exports = PageNuevoInstrumento;
+module.exports = PageNuevoJuego;
