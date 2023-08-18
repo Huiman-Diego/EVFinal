@@ -5,24 +5,24 @@ const {useState, useEffect} = require('react');
 
 
 
-const PageVerBanda = () => {
+const PageVerEquipo = () => {
 
     let { id } = useParams();
-    const [banda, setBanda] = useState({});
+    const [equipo, setEquipo ] = useState({});
     const [integrantes, setIntegrantes] = useState([]);
 
 
     useEffect(() => {
-        url_banda = '/api/bandas/' + id
+        url_equipo = '/api/equipos/' + id
 
         client({
             method: 'GET',
-            path: url_banda
-        }).done(response => setBanda(response.entity));
+            path: url_equipo
+        }).done(response => setEquipo(response.entity));
 
         client({
             method: 'GET',
-            path: url_banda + '/formacion'
+            path: url_equipo + '/formacion'
         }).done(response => setIntegrantes(response.entity))
         
     }, []);
@@ -30,12 +30,12 @@ const PageVerBanda = () => {
 
     return (
         <>
-            <h1>Banda</h1>
+            <h1>Equipo</h1>
             <table border="1">
                 <tbody>
                     <tr>
                         <th>Nombre</th>
-                        <td>{banda.nombre}</td>
+                        <td>{equipo.nombre}</td>
                     </tr>
                 </tbody>
             </table>
@@ -66,10 +66,10 @@ const PageVerBanda = () => {
                 </tbody>
             </table>
             <hr />
-            <Link to={`/ver-banda/${id}/nuevo-integrante`}>Agregar integrante</Link> |  
+            <Link to={`/ver-equipo/${id}/nuevo-integrante`}>Agregar integrante</Link> |  
             <Link to="/">Volver</Link>
         </>
     )
 }
 
-module.exports = PageVerBanda;
+module.exports = PageVerEquipo;

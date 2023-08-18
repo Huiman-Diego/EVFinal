@@ -13,7 +13,7 @@ public class Integrante {
 
 	@ManyToOne()
 	@JoinColumn(name = "id_banda")
-	private Banda banda;
+	private Equipo banda;
 
 	@ManyToOne()
 	@JoinColumn(name = "id_musico")
@@ -25,7 +25,7 @@ public class Integrante {
 
 	public Integrante() {}
 
-	public Integrante (Banda banda, Musico musico, Instrumento instrumento) {
+	public Integrante (Equipo banda, Musico musico, Instrumento instrumento) {
 		this.banda = banda;
 		this.musico = musico;
 		this.instrumento = instrumento;
@@ -39,11 +39,11 @@ public class Integrante {
 		this.id = id;
 	}
 
-    public Banda getBanda() {
+    public Equipo getBanda() {
         return banda;
     }
 
-    public void setBanda(Banda banda) {
+    public void setBanda(Equipo banda) {
         this.banda = banda;
     }
 

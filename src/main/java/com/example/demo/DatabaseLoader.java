@@ -9,18 +9,18 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	private final InstrumentoRepository repositoryI;
 	private final MusicoRepository repositoryM;
-	private final BandaRepository repositoryB;
+	private final EquipoRepository repositoryE;
 	private final IntegranteRepository repositoryN;
 
 	@Autowired
 	public DatabaseLoader(
 		InstrumentoRepository repositoryI,
 		 MusicoRepository repositoryM,
-		 BandaRepository repositoryB,
+		 EquipoRepository repositoryE,
 		 IntegranteRepository repositoryN) {
 		this.repositoryI = repositoryI;
 		this.repositoryM = repositoryM;
-		this.repositoryB = repositoryB;
+		this.repositoryE = repositoryE;
 		this.repositoryN = repositoryN;
 	}
 
@@ -46,16 +46,16 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repositoryM.save(mRogerWaters);
 		this.repositoryM.save(new Musico("Roger"));
 
-		Banda bQueen = new Banda("Queen");
-		Banda bPinkFloyd = new Banda("Pink Floyd");
-		this.repositoryB.save(bQueen);
-		this.repositoryB.save(bPinkFloyd);
+		Equipo bAstralis = new Equipo("Astralis");
+		Equipo bFnatic = new Equipo("Fnatic");
+		this.repositoryE.save(bAstralis);
+		this.repositoryE.save(bFnatic);
 
-		Integrante intFreddie = new Integrante(bQueen, mFreddie, iVoz);
+		Integrante intFreddie = new Integrante(bAstralis, mFreddie, iVoz);
 		this.repositoryN.save(intFreddie);
-		Integrante intBrian = new Integrante(bQueen, mBrian, iGuitarrElectrica);
+		Integrante intBrian = new Integrante(bAstralis, mBrian, iGuitarrElectrica);
 		this.repositoryN.save(intBrian);
-		Integrante intRogerWaters = new Integrante(bPinkFloyd, mRogerWaters, iBajo);
+		Integrante intRogerWaters = new Integrante(bFnatic, mRogerWaters, iBajo);
 		this.repositoryN.save(intRogerWaters);
 
 

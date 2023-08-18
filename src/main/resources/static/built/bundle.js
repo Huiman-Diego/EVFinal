@@ -40805,8 +40805,8 @@ var PageNuevoInstrumento = __webpack_require__(/*! ./pages/nuevo-instrumento */ 
 var PageNuevoMusico = __webpack_require__(/*! ./pages/nuevo-musico */ "./src/main/js/pages/nuevo-musico.js");
 var PageEditarMusico = __webpack_require__(/*! ./pages/editar-musico */ "./src/main/js/pages/editar-musico.js");
 var PageEditarInstrumento = __webpack_require__(/*! ./pages/editar-instrumento */ "./src/main/js/pages/editar-instrumento.js");
-var PageVerBanda = __webpack_require__(/*! ./pages/ver-banda */ "./src/main/js/pages/ver-banda.js");
 var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
+var PageVerEquipo = __webpack_require__(/*! ./pages/ver-equipo */ "./src/main/js/pages/ver-equipo.js");
 var router = createBrowserRouter([{
   path: '/',
   element: /*#__PURE__*/React.createElement(PageHome, null)
@@ -40826,10 +40826,10 @@ var router = createBrowserRouter([{
   path: '/editar-instrumento/:id',
   element: /*#__PURE__*/React.createElement(PageEditarInstrumento, null)
 }, {
-  path: '/ver-banda/:id',
-  element: /*#__PURE__*/React.createElement(PageVerBanda, null)
+  path: '/ver-equipo/:id',
+  element: /*#__PURE__*/React.createElement(PageVerEquipo, null)
 }, {
-  path: '/ver-banda/:id/nuevo-integrante',
+  path: '/ver-equipo/:id/nuevo-integrante',
   element: /*#__PURE__*/React.createElement(PageNuevoIntegrante, null)
 }]);
 ReactDOM.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(RouterProvider, {
@@ -41079,7 +41079,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       instrumentos: [],
       musicos: [],
-      bandas: []
+      equipos: []
     };
     return _this;
   }
@@ -41105,17 +41105,17 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       });
       client({
         method: 'GET',
-        path: '/api/bandas'
+        path: '/api/equipos'
       }).done(function (response) {
         _this2.setState({
-          bandas: response.entity._embedded.bandas
+          equipos: response.entity._embedded.equipos
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Demo App!"), /*#__PURE__*/React.createElement("div", {
+      return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Evaluacion Final..."), /*#__PURE__*/React.createElement("div", {
         style: {
           "width": "100%",
           "display": "flex"
@@ -41147,13 +41147,13 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
           "width": "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Bandas",
-        emoji: "\uD83D\uDC69\uD83C\uDFFC\u200D\uD83C\uDFA4"
-      }), /*#__PURE__*/React.createElement(BandaList, {
-        bandas: this.state.bandas
+        entidad: "Equipos",
+        emoji: "\uD83D\uDCBB"
+      }), /*#__PURE__*/React.createElement(EquipoList, {
+        equipos: this.state.equipos
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nueva-banda"
-      }, "Nueva Banda"))));
+        to: "/nuevo-equipo"
+      }, "Nuevo Equipo"))));
     }
   }]);
   return PageHome;
@@ -41207,28 +41207,28 @@ var MusicoList = /*#__PURE__*/function (_React$Component3) {
   }]);
   return MusicoList;
 }(React.Component);
-var BandaList = /*#__PURE__*/function (_React$Component4) {
-  _inherits(BandaList, _React$Component4);
-  var _super4 = _createSuper(BandaList);
-  function BandaList() {
-    _classCallCheck(this, BandaList);
+var EquipoList = /*#__PURE__*/function (_React$Component4) {
+  _inherits(EquipoList, _React$Component4);
+  var _super4 = _createSuper(EquipoList);
+  function EquipoList() {
+    _classCallCheck(this, EquipoList);
     return _super4.apply(this, arguments);
   }
-  _createClass(BandaList, [{
+  _createClass(EquipoList, [{
     key: "render",
     value: function render() {
-      var bandas = this.props.bandas.map(function (banda) {
-        return /*#__PURE__*/React.createElement(Banda, {
-          key: banda._links.self.href,
-          banda: banda
+      var equipos = this.props.equipos.map(function (equipo) {
+        return /*#__PURE__*/React.createElement(Equipo, {
+          key: equipo._links.self.href,
+          equipo: equipo
         });
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), bandas));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), equipos));
     }
   }]);
-  return BandaList;
+  return EquipoList;
 }(React.Component);
 var Instrumento = /*#__PURE__*/function (_React$Component5) {
   _inherits(Instrumento, _React$Component5);
@@ -41268,23 +41268,23 @@ var Musico = /*#__PURE__*/function (_React$Component6) {
   }]);
   return Musico;
 }(React.Component);
-var Banda = /*#__PURE__*/function (_React$Component7) {
-  _inherits(Banda, _React$Component7);
-  var _super7 = _createSuper(Banda);
-  function Banda() {
-    _classCallCheck(this, Banda);
+var Equipo = /*#__PURE__*/function (_React$Component7) {
+  _inherits(Equipo, _React$Component7);
+  var _super7 = _createSuper(Equipo);
+  function Equipo() {
+    _classCallCheck(this, Equipo);
     return _super7.apply(this, arguments);
   }
-  _createClass(Banda, [{
+  _createClass(Equipo, [{
     key: "render",
     value: function render() {
-      var id = this.props.banda._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.banda.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/ver-banda/".concat(id)
-      }, "Ver Banda")));
+      var id = this.props.equipo._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.equipo.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/ver-equipo/".concat(id)
+      }, "Ver Equipo")));
     }
   }]);
-  return Banda;
+  return Equipo;
 }(React.Component);
 module.exports = PageHome;
 
@@ -41560,10 +41560,10 @@ module.exports = PageNuevoMusico;
 
 /***/ }),
 
-/***/ "./src/main/js/pages/ver-banda.js":
-/*!****************************************!*\
-  !*** ./src/main/js/pages/ver-banda.js ***!
-  \****************************************/
+/***/ "./src/main/js/pages/ver-equipo.js":
+/*!*****************************************!*\
+  !*** ./src/main/js/pages/ver-equipo.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41581,47 +41581,47 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
 var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
   useState = _require2.useState,
   useEffect = _require2.useEffect;
-var PageVerBanda = function PageVerBanda() {
+var PageVerEquipo = function PageVerEquipo() {
   var _useParams = useParams(),
     id = _useParams.id;
   var _useState = useState({}),
     _useState2 = _slicedToArray(_useState, 2),
-    banda = _useState2[0],
-    setBanda = _useState2[1];
+    equipo = _useState2[0],
+    setEquipo = _useState2[1];
   var _useState3 = useState([]),
     _useState4 = _slicedToArray(_useState3, 2),
     integrantes = _useState4[0],
     setIntegrantes = _useState4[1];
   useEffect(function () {
-    url_banda = '/api/bandas/' + id;
+    url_equipo = '/api/equipos/' + id;
     client({
       method: 'GET',
-      path: url_banda
+      path: url_equipo
     }).done(function (response) {
-      return setBanda(response.entity);
+      return setEquipo(response.entity);
     });
     client({
       method: 'GET',
-      path: url_banda + '/formacion'
+      path: url_equipo + '/formacion'
     }).done(function (response) {
       return setIntegrantes(response.entity);
     });
   }, []);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Banda"), /*#__PURE__*/React.createElement("table", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Equipo"), /*#__PURE__*/React.createElement("table", {
     border: "1"
-  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, banda.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
+  }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, equipo.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
     border: "1"
   }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Musico"), /*#__PURE__*/React.createElement("th", null, "Instrumento"))), /*#__PURE__*/React.createElement("tbody", null, integrantes.map(function (integrante) {
     return /*#__PURE__*/React.createElement("tr", {
       key: integrante.ID
     }, /*#__PURE__*/React.createElement("td", null, integrante.MUSICO), /*#__PURE__*/React.createElement("td", null, integrante.INSTRUMENTO));
   }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
-    to: "/ver-banda/".concat(id, "/nuevo-integrante")
+    to: "/ver-equipo/".concat(id, "/nuevo-integrante")
   }, "Agregar integrante"), " |", /*#__PURE__*/React.createElement(Link, {
     to: "/"
   }, "Volver"));
 };
-module.exports = PageVerBanda;
+module.exports = PageVerEquipo;
 
 /***/ }),
 
