@@ -5,14 +5,14 @@ const { Link } = require('react-router-dom');
 class PageHome extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = { juegos: [], musicos: [], equipos: [] };
+		this.state = { juegos: [], Jugadores: [], equipos: [] };
 	}
 	componentDidMount() {
 		client({ method: 'GET', path: '/api/juegos' }).done(response => {
 			this.setState({ juegos: response.entity._embedded.juegos });
 		});
-		client({ method: 'GET', path: '/api/musicos' }).done(response => {
-			this.setState({ musicos: response.entity._embedded.musicos });
+		client({ method: 'GET', path: '/api/jugadores' }).done(response => {
+			this.setState({ jugadores: response.entity._embedded.jugadores });
 		});
 		client({ method: 'GET', path: '/api/equipos' }).done(response => {
 			this.setState({ equipos: response.entity._embedded.equipos });
@@ -31,9 +31,9 @@ class PageHome extends React.Component {
 						<Link to="/nuevo-juego">Nuevo Juego</Link>
 					</div>
 					<div style={{"width": "calc(100% / 3)"}}>
-						<Titulo entidad="Musicos" emoji="🎵" />
-						<MusicoList musicos={this.state.musicos} />
-						<Link to="/nuevo-musico">Nuevo Musico</Link>
+						<Titulo entidad="Jugadores" emoji="😎" />
+						<MusicoList jugadores={this.state.jugadores} />
+						<Link to="/nuevo-jugador">Nuevo Jugador</Link>
 					</div>
 					<div style={{"width": "calc(100% / 3)"}}>
 						<Titulo entidad="Equipos" emoji="💻" />
@@ -80,10 +80,10 @@ class JuegoList extends React.Component {
 		)
 	}
 }
-class MusicoList extends React.Component {
+class JugadorList extends React.Component {
 	render() {
-		const musicos = this.props.musicos.map(musico =>
-			<Musico key={musico._links.self.href} musico={musico} />
+		const jugadores = this.props.jugadores.map(jugador =>
+			<Jugador key={jugador._links.self.href} jugador={jugador} />
 		);
 		return (
 			<table border="1">
@@ -92,7 +92,7 @@ class MusicoList extends React.Component {
 						<th>Nombre</th>
 						<th>Acciones</th>
 					</tr>
-					{musicos}
+					{jugadores}
 				</tbody>
 			</table>
 		)
@@ -132,14 +132,14 @@ class Juego extends React.Component {
 	}
 }
 
-class Musico extends React.Component {
+class Jugador extends React.Component {
 	render() {
-		const id = this.props.musico._links.self.href.split("/").slice(-1);
+		const id = this.props.jugador._links.self.href.split("/").slice(-1);
 		return (
 			<tr>
-				<td>{this.props.musico.nombre}</td>
+				<td>{this.props.jugador.nombre}</td>
 				<td>
-					<Link to={`/editar-musico/${id}`}>Editar</Link>
+					<Link to={`/editar-jugador/${id}`}>Editar</Link>
 				</td>
 			</tr>
 		)

@@ -3,18 +3,18 @@ const {useState, useEffect} = require('react');
 const {useParams, Link} = require('react-router-dom');
 const client = require('../client');
 
-const PageEditarMusico = ()=>{
+const PageEditarJugador = ()=>{
 
     const {id} = useParams();
-    const [musico, setMusico] = useState({});
+    const [jugador, setJugador] = useState({});
 
     useEffect(()=>{
         client({
             method: 'GET',
-            path: '/api/musicos/'+id,
+            path: '/api/jugadores/'+id,
             headers: {'Content-Type': 'application/json'}
         }).done((response)=>{
-            setMusico(response.entity)
+            setJugador(response.entity)
         })    
     },[])
 
@@ -22,25 +22,25 @@ const PageEditarMusico = ()=>{
         e.preventDefault();
         client({
             method: 'PATCH',
-            path: '/api/musicos/'+id,
+            path: '/api/jugadores/'+id,
             headers: {'Content-Type': 'application/json'},
-            entity: musico
+            entity: jugador
         }).done(()=>window.location = "/")
     }
 
     return(
         <>
-            <h1>Editar Musico: {id}</h1>
+            <h1>Editar Jugador: {id}</h1>
 
             <form onSubmit={handleSubmit}>
                 <label>Nombre</label>
                 <input 
                     type="text"
                     name="nombre"
-                    value={musico.nombre}
-                    onChange={(e)=>{setMusico({...musico, nombre: e.target.value})}} />
+                    value={jugador.nombre}
+                    onChange={(e)=>{setJugador({...jugador, nombre: e.target.value})}} />
                 <br/>
-                <input type='submit' value={`Editar Musico ${id}`} />
+                <input type='submit' value={`Editar Jugador ${id}`} />
             </form>
             <Link to="/">Volver</Link>
         </>
@@ -48,4 +48,4 @@ const PageEditarMusico = ()=>{
 
 }
 
-module.exports = PageEditarMusico
+module.exports = PageEditarJugador

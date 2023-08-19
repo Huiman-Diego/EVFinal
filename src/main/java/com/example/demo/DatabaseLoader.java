@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 public class DatabaseLoader implements CommandLineRunner {
 
 	private final JuegoRepository repositoryI;
-	private final MusicoRepository repositoryM;
+	private final JugadorRepository repositoryM;
 	private final EquipoRepository repositoryE;
 	private final IntegranteRepository repositoryN;
 
 	@Autowired
 	public DatabaseLoader(
 		JuegoRepository repositoryI,
-		MusicoRepository repositoryM,
+		JugadorRepository repositoryM,
 		EquipoRepository repositoryE,
 		IntegranteRepository repositoryN) {
 		this.repositoryI = repositoryI;
@@ -30,33 +30,32 @@ public class DatabaseLoader implements CommandLineRunner {
 		Juego iValorant = new Juego("Valorant", "Multijugador", "Disp");
 		Juego iGtaV = new Juego("GTA V", "Rol", "Juegos en los que asumes el papel de un personaje");
 		Juego iCandyCrush = new Juego("Candy Crush", "Casuales", "Juegos sencillos y de facil acceso");
-		this.repositoryI.save(new Juego("Guitarra Acústica", "Cuerda", "de madera, con caja de resonancia, 6 cuerdas templadas"));
-		this.repositoryI.save(new Juego("Ukelele","Cuerda","de madera, con caja de resonancia pequeña, 4 cuerdas templadas"));
-		this.repositoryI.save(new Juego("Melódica","Viento","teclado pequeño de 2 octavas, sonorizado por soplido"));
+		this.repositoryI.save(new Juego("FIFA 23", "Deporte", "Videojuego de simulacion de futbol"));
+		this.repositoryI.save(new Juego("Amoung Us","Party Games","Identificar a los jugadores que son los impostores"));
 		this.repositoryI.save(iValorant);
 		this.repositoryI.save(iGtaV);
 		this.repositoryI.save(iCandyCrush);
 		this.repositoryI.save(new Juego("Minecraft", "Supervivencia", "Crear todo lo que quieras"));
 
-		Musico mFreddie = new Musico("Freddie");
-		Musico mBrian = new Musico("Brian");
-		Musico mRogerWaters = new Musico("Roger Waters");
-		this.repositoryM.save(mFreddie);
-		this.repositoryM.save(mBrian);
-		this.repositoryM.save(mRogerWaters);
-		this.repositoryM.save(new Musico("Roger"));
+		Jugador mMixwell = new Jugador("Mixwell");
+		Jugador mDestt = new Jugador("Destt");
+		Jugador mLuois = new Jugador("Louis");
+		this.repositoryM.save(mMixwell);
+		this.repositoryM.save(mDestt);
+		this.repositoryM.save(mLuois);
+		this.repositoryM.save(new Jugador("Diego"));
 
 		Equipo bAstralis = new Equipo("Astralis");
 		Equipo bFnatic = new Equipo("Fnatic");
 		this.repositoryE.save(bAstralis);
 		this.repositoryE.save(bFnatic);
 
-		Integrante intFreddie = new Integrante(bAstralis, mFreddie, iValorant);
-		this.repositoryN.save(intFreddie);
-		Integrante intBrian = new Integrante(bAstralis, mBrian, iGtaV);
-		this.repositoryN.save(intBrian);
-		Integrante intRogerWaters = new Integrante(bFnatic, mRogerWaters, iCandyCrush);
-		this.repositoryN.save(intRogerWaters);
+		Integrante intMixwell = new Integrante(bAstralis, mMixwell, iValorant);
+		this.repositoryN.save(intMixwell);
+		Integrante intDestt = new Integrante(bAstralis, mDestt, iGtaV);
+		this.repositoryN.save(intDestt);
+		Integrante intLuois = new Integrante(bFnatic, mLuois, iCandyCrush);
+		this.repositoryN.save(intLuois);
 
 
 	}

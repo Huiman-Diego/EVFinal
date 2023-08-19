@@ -1,23 +1,23 @@
 @server = https://studious-bassoon-qwggg74rgjqf49gg-8080.app.github.dev
-@instumentos = {{server}}/api/instrumentos
-@musicos = {{server}}/api/musicos
+@juegos = {{server}}/api/juegos
+@jugadores = {{server}}/api/jugadores
 ###
-GET {{instumentos}}
+GET {{juegos}}
 ###
-POST {{instumentos}}
+POST {{juegos}}
 Content-Type: application/json
 
 {
-    "nombre": "Quena",
-    "categoria": "Viento",
-    "descripcion": "Tubo de madera con orificios"
+    "nombre": "Pepsiman",
+    "categoria": "No se",
+    "descripcion": "Juego de la infancia"
 }
 ###
-POST {{musicos}}
+POST {{jugadores}}
 Content-Type: application/json
 
-{"nombre": "Otro Músico"}
+{"nombre": "Otro Jugador"}
 ###
-GET {{server}}/api/integrantes/1/instrumento
+GET {{server}}/api/integrantes/1/juego
 ###
-GET {{server}}/api/bandas/1/formacion
+GET {{server}}/api/equipos/1/formacion
