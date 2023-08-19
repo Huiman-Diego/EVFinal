@@ -80,7 +80,7 @@ class JuegoList extends React.Component {
 		)
 	}
 }
-class JugadorList extends React.Component {
+class MusicoList extends React.Component {
 	render() {
 		const jugadores = this.props.jugadores.map(jugador =>
 			<Jugador key={jugador._links.self.href} jugador={jugador} />
