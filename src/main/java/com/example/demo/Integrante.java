@@ -39,27 +39,27 @@ public class Integrante {
 		this.id = id;
 	}
 
-    public Equipo getBanda() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
-    public void setBanda(Equipo equipo) {
+    public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
 
-    public Jugador getMusico() {
+    public Jugador getJugador() {
         return jugador;
     }
 
-    public void setMusico(Jugador jugador) {
+    public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
 
-    public Juego getInstrumento() {
+    public Juego getJuego() {
         return juego;
     }
 
-    public void setInstrumento(Juego juego) {
+    public void setJuego(Juego juego) {
         this.juego = juego;
     }
 

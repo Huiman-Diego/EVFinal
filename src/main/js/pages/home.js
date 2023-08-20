@@ -32,7 +32,7 @@ class PageHome extends React.Component {
 					</div>
 					<div style={{"width": "calc(100% / 3)"}}>
 						<Titulo entidad="Jugadores" emoji="😎" />
-						<MusicoList jugadores={this.state.jugadores} />
+						<JugadorList jugadores={this.state.jugadores} />
 						<Link to="/nuevo-jugador">Nuevo Jugador</Link>
 					</div>
 					<div style={{"width": "calc(100% / 3)"}}>
@@ -41,9 +41,6 @@ class PageHome extends React.Component {
 						<Link to="/nuevo-equipo">Nuevo Equipo</Link>
 					</div>
 				</div>
-
-
-
 
 			</>
 		)
@@ -80,7 +77,7 @@ class JuegoList extends React.Component {
 		)
 	}
 }
-class MusicoList extends React.Component {
+class JugadorList extends React.Component {
 	render() {
 		const jugadores = this.props.jugadores.map(jugador =>
 			<Jugador key={jugador._links.self.href} jugador={jugador} />

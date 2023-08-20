@@ -40800,13 +40800,13 @@ var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react
   createBrowserRouter = _require.createBrowserRouter,
   RouterProvider = _require.RouterProvider;
 var PageHome = __webpack_require__(/*! ./pages/home */ "./src/main/js/pages/home.js");
-var PageNuevoMusico = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module './pages/nuevo-musico'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-var PageEditarMusico = __webpack_require__(/*! ./pages/editar-jugador */ "./src/main/js/pages/editar-jugador.js");
 var PageNuevoIntegrante = __webpack_require__(/*! ./pages/nuevo-integrante */ "./src/main/js/pages/nuevo-integrante.js");
 var PageVerEquipo = __webpack_require__(/*! ./pages/ver-equipo */ "./src/main/js/pages/ver-equipo.js");
 var PageVerJuego = __webpack_require__(/*! ./pages/ver-juego */ "./src/main/js/pages/ver-juego.js");
 var PageNuevoJuego = __webpack_require__(/*! ./pages/nuevo-juego */ "./src/main/js/pages/nuevo-juego.js");
 var PageEditarJuego = __webpack_require__(/*! ./pages/editar-juego */ "./src/main/js/pages/editar-juego.js");
+var PageNuevoJugador = __webpack_require__(/*! ./pages/nuevo-jugador */ "./src/main/js/pages/nuevo-jugador.js");
+var PageEditarJugador = __webpack_require__(/*! ./pages/editar-jugador */ "./src/main/js/pages/editar-jugador.js");
 var router = createBrowserRouter([{
   path: '/',
   element: /*#__PURE__*/React.createElement(PageHome, null)
@@ -40817,11 +40817,11 @@ var router = createBrowserRouter([{
   path: '/nuevo-juego',
   element: /*#__PURE__*/React.createElement(PageNuevoJuego, null)
 }, {
-  path: '/nuevo-musico',
-  element: /*#__PURE__*/React.createElement(PageNuevoMusico, null)
+  path: '/nuevo-jugador',
+  element: /*#__PURE__*/React.createElement(PageNuevoJugador, null)
 }, {
-  path: '/editar-musico/:id',
-  element: /*#__PURE__*/React.createElement(PageEditarMusico, null)
+  path: '/editar-jugador/:id',
+  element: /*#__PURE__*/React.createElement(PageEditarJugador, null)
 }, {
   path: '/editar-juego/:id',
   element: /*#__PURE__*/React.createElement(PageEditarJuego, null)
@@ -41078,7 +41078,7 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       juegos: [],
-      musicos: [],
+      Jugadores: [],
       equipos: []
     };
     return _this;
@@ -41097,10 +41097,10 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
       });
       client({
         method: 'GET',
-        path: '/api/musicos'
+        path: '/api/jugadores'
       }).done(function (response) {
         _this2.setState({
-          musicos: response.entity._embedded.musicos
+          jugadores: response.entity._embedded.jugadores
         });
       });
       client({
@@ -41136,13 +41136,13 @@ var PageHome = /*#__PURE__*/function (_React$Component) {
           "width": "calc(100% / 3)"
         }
       }, /*#__PURE__*/React.createElement(Titulo, {
-        entidad: "Musicos",
-        emoji: "\uD83C\uDFB5"
-      }), /*#__PURE__*/React.createElement(MusicoList, {
-        musicos: this.state.musicos
+        entidad: "Jugadores",
+        emoji: "\uD83D\uDE0E"
+      }), /*#__PURE__*/React.createElement(JugadorList, {
+        jugadores: this.state.jugadores
       }), /*#__PURE__*/React.createElement(Link, {
-        to: "/nuevo-musico"
-      }, "Nuevo Musico")), /*#__PURE__*/React.createElement("div", {
+        to: "/nuevo-jugador"
+      }, "Nuevo Jugador")), /*#__PURE__*/React.createElement("div", {
         style: {
           "width": "calc(100% / 3)"
         }
@@ -41184,28 +41184,28 @@ var JuegoList = /*#__PURE__*/function (_React$Component2) {
   }]);
   return JuegoList;
 }(React.Component);
-var MusicoList = /*#__PURE__*/function (_React$Component3) {
-  _inherits(MusicoList, _React$Component3);
-  var _super3 = _createSuper(MusicoList);
-  function MusicoList() {
-    _classCallCheck(this, MusicoList);
+var JugadorList = /*#__PURE__*/function (_React$Component3) {
+  _inherits(JugadorList, _React$Component3);
+  var _super3 = _createSuper(JugadorList);
+  function JugadorList() {
+    _classCallCheck(this, JugadorList);
     return _super3.apply(this, arguments);
   }
-  _createClass(MusicoList, [{
+  _createClass(JugadorList, [{
     key: "render",
     value: function render() {
-      var musicos = this.props.musicos.map(function (musico) {
-        return /*#__PURE__*/React.createElement(Musico, {
-          key: musico._links.self.href,
-          musico: musico
+      var jugadores = this.props.jugadores.map(function (jugador) {
+        return /*#__PURE__*/React.createElement(Jugador, {
+          key: jugador._links.self.href,
+          jugador: jugador
         });
       });
       return /*#__PURE__*/React.createElement("table", {
         border: "1"
-      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), musicos));
+      }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("th", null, "Acciones")), jugadores));
     }
   }]);
-  return MusicoList;
+  return JugadorList;
 }(React.Component);
 var EquipoList = /*#__PURE__*/function (_React$Component4) {
   _inherits(EquipoList, _React$Component4);
@@ -41250,23 +41250,23 @@ var Juego = /*#__PURE__*/function (_React$Component5) {
   }]);
   return Juego;
 }(React.Component);
-var Musico = /*#__PURE__*/function (_React$Component6) {
-  _inherits(Musico, _React$Component6);
-  var _super6 = _createSuper(Musico);
-  function Musico() {
-    _classCallCheck(this, Musico);
+var Jugador = /*#__PURE__*/function (_React$Component6) {
+  _inherits(Jugador, _React$Component6);
+  var _super6 = _createSuper(Jugador);
+  function Jugador() {
+    _classCallCheck(this, Jugador);
     return _super6.apply(this, arguments);
   }
-  _createClass(Musico, [{
+  _createClass(Jugador, [{
     key: "render",
     value: function render() {
-      var id = this.props.musico._links.self.href.split("/").slice(-1);
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.musico.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
-        to: "/editar-musico/".concat(id)
+      var id = this.props.jugador._links.self.href.split("/").slice(-1);
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.jugador.nombre), /*#__PURE__*/React.createElement("td", null, /*#__PURE__*/React.createElement(Link, {
+        to: "/editar-jugador/".concat(id)
       }, "Editar")));
     }
   }]);
-  return Musico;
+  return Jugador;
 }(React.Component);
 var Equipo = /*#__PURE__*/function (_React$Component7) {
   _inherits(Equipo, _React$Component7);
@@ -41498,6 +41498,65 @@ var PageNuevoJuego = function PageNuevoJuego() {
   }, "Volver"));
 };
 module.exports = PageNuevoJuego;
+
+/***/ }),
+
+/***/ "./src/main/js/pages/nuevo-jugador.js":
+/*!********************************************!*\
+  !*** ./src/main/js/pages/nuevo-jugador.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var client = __webpack_require__(/*! ../client */ "./src/main/js/client.js");
+var _require = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js"),
+  Link = _require.Link;
+var _require2 = __webpack_require__(/*! react */ "./node_modules/react/index.js"),
+  useState = _require2.useState;
+var PageNuevoJugador = function PageNuevoJugador() {
+  var _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    nombre = _useState2[0],
+    setNombre = _useState2[1];
+  var handleSubmit = function handleSubmit(event) {
+    event.preventDefault();
+    client({
+      method: 'POST',
+      path: '/api/jugadores',
+      entity: {
+        nombre: nombre
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).done(function () {
+      window.location = '/';
+    });
+  };
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Jugador"), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /*#__PURE__*/React.createElement("label", null, "Nombre"), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    id: "nombre",
+    name: "nombre",
+    onChange: function onChange(e) {
+      return setNombre(e.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "submit",
+    value: "Nuevo Jugador"
+  })), /*#__PURE__*/React.createElement(Link, {
+    to: "/"
+  }, "Volver"));
+};
+module.exports = PageNuevoJugador;
 
 /***/ }),
 

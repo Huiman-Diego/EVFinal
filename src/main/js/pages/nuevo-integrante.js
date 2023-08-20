@@ -6,10 +6,10 @@ const client = require('../client');
 const NuevoIntegrantePage = () => {
 
     let { id } = useParams();
-    const [jugador, setJugadores] = useState([])
-    const [juego, setJuegos] = useState([])
-    const [idJugador, setIdJugador] = useState('')
-    const [idJuego, setIdJuego] = useState('')
+    const [musicos, setMusicos] = useState([])
+    const [instrumentos, setInstrumentos] = useState([])
+    const [idMusico, setIdMusico] = useState('')
+    const [idInstrumento, setIdInstrumento] = useState('')
 
     const handleSubmit = (evento)=>{
         evento.preventDefault();
@@ -17,9 +17,9 @@ const NuevoIntegrantePage = () => {
             method: 'POST',
             path: '/api/integrantes',
             entity: {
-                equipo: 'http://localhost:8080/api/equipos/'+id,
-                jugador: 'http://localhost:8080/api/jugadores/'+idJugador,
-                juego: 'http://localhost:8080/api/juegos/'+idJuego
+                banda: 'http://localhost:8080/api/bandas/'+id,
+                musico: 'http://localhost:8080/api/musicos/'+idMusico,
+                instrumento: 'http://localhost:8080/api/instrumentos/'+idInstrumento
             },
             headers: {'Content-Type': 'application/json'}
         }).done(()=>{
@@ -30,23 +30,23 @@ const NuevoIntegrantePage = () => {
     useEffect(() => {
         client({
             method: 'GET',
-            path: '/api/jugadores'
+            path: '/api/musicos'
         }).done(response=>{
-            let jugadores2 = [];
-            response.entity._embedded.jugadores.map(jugador => {
-                jugadores2.push({value: jugador._links.self.href.split('/').slice(-1), label: jugador.nombre})
+            let musicos2 = [];
+            response.entity._embedded.musicos.map(musico => {
+                musicos2.push({value: musico._links.self.href.split('/').slice(-1), label: musico.nombre})
             })
-            setJugadores(jugadores2)
+            setMusicos(musicos2)
         })
         client({
             method: 'GET',
-            path: '/api/juegos'
+            path: '/api/instrumentos'
         }).done(response=>{
-            let juegos2 = [];
-            response.entity._embedded.juegos.map(juego => {
-                juegos2.push({value: juego._links.self.href.split('/').slice(-1), label: juego.nombre})
+            let instrumentos2 = [];
+            response.entity._embedded.instrumentos.map(instrumento => {
+                instrumentos2.push({value: instrumento._links.self.href.split('/').slice(-1), label: instrumento.nombre})
             })
-            setJuegos(juegos2)
+            setInstrumentos(instrumentos2)
         })
 
     },[])
@@ -56,20 +56,20 @@ const NuevoIntegrantePage = () => {
             <h1>Nuevo Integrante</h1>
             <form onSubmit={handleSubmit}>
 
-                <label htmlFor='jugador'>Jugador</label>
-                <select name="jugador" id="jugador" onChange={(e)=>{setIdJugador(e.target.value)}}>
-                    {jugadores.map(jugador => {	
+                <label htmlFor='musico'>Musico</label>
+                <select name="musico" id="musico" onChange={(e)=>{setIdMusico(e.target.value)}}>
+                    {musicos.map(musico => {	
                         return (
-                            <option key={jugador.value} value={jugador.value}>{jugador.label}</option>
+                            <option key={musico.value} value={musico.value}>{musico.label}</option>
                         )
                     })}
                 </select>
                 
-                <label>Juego</label>
-                <select name="juego" id="juego" onChange={(e)=>{setIdJuego(e.target.value)}}>
-                    {juegos.map(juego => {	
+                <label>Instrumento</label>
+                <select name="instrumento" id="instrumento" onChange={(e)=>{setIdInstrumento(e.target.value)}}>
+                    {instrumentos.map(instrumento => {	
                         return (
-                            <option key={juego.value} value={juego.value}>{juego.label}</option>
+                            <option key={instrumento.value} value={instrumento.value}>{instrumento.label}</option>
                         )
                     })}
                 </select>
