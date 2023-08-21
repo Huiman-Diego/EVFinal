@@ -46,8 +46,8 @@ const PageVerEquipo = () => {
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Musico</th>
-                        <th>Instrumento</th>
+                        <th>Jugador</th>
+                        <th>Juego</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,8 +56,8 @@ const PageVerEquipo = () => {
 
                         return (
                             <tr key={integrante.ID}>
-                                <td>{integrante.MUSICO}</td>
-                                <td>{integrante.INSTRUMENTO}</td>
+                                <td>{integrante.JUGADOR}</td>
+                                <td>{integrante.JUEGO}</td>
                             </tr>
                         )
 

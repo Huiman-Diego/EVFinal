@@ -41316,29 +41316,29 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
     id = _useParams.id;
   var _useState = useState([]),
     _useState2 = _slicedToArray(_useState, 2),
-    musicos = _useState2[0],
+    jugadores = _useState2[0],
     setMusicos = _useState2[1];
   var _useState3 = useState([]),
     _useState4 = _slicedToArray(_useState3, 2),
-    instrumentos = _useState4[0],
+    juegos = _useState4[0],
     setInstrumentos = _useState4[1];
   var _useState5 = useState(''),
     _useState6 = _slicedToArray(_useState5, 2),
-    idMusico = _useState6[0],
-    setIdMusico = _useState6[1];
+    idJugador = _useState6[0],
+    setIdJugador = _useState6[1];
   var _useState7 = useState(''),
     _useState8 = _slicedToArray(_useState7, 2),
-    idInstrumento = _useState8[0],
-    setIdInstrumento = _useState8[1];
+    idJuego = _useState8[0],
+    setIdJuego = _useState8[1];
   var handleSubmit = function handleSubmit(evento) {
     evento.preventDefault();
     client({
       method: 'POST',
       path: '/api/integrantes',
       entity: {
-        banda: 'http://localhost:8080/api/bandas/' + id,
-        musico: 'http://localhost:8080/api/musicos/' + idMusico,
-        instrumento: 'http://localhost:8080/api/instrumentos/' + idInstrumento
+        equipo: 'http://localhost:8080/api/equipos/' + id,
+        jugador: 'http://localhost:8080/api/jugadores/' + idJugador,
+        juego: 'http://localhost:8080/api/juegos/' + idJuego
       },
       headers: {
         'Content-Type': 'application/json'
@@ -41350,57 +41350,57 @@ var NuevoIntegrantePage = function NuevoIntegrantePage() {
   useEffect(function () {
     client({
       method: 'GET',
-      path: '/api/musicos'
+      path: '/api/jugadores'
     }).done(function (response) {
-      var musicos2 = [];
-      response.entity._embedded.musicos.map(function (musico) {
-        musicos2.push({
-          value: musico._links.self.href.split('/').slice(-1),
-          label: musico.nombre
+      var jugadores2 = [];
+      response.entity._embedded.jugadores.map(function (jugador) {
+        jugadores2.push({
+          value: jugador._links.self.href.split('/').slice(-1),
+          label: jugador.nombre
         });
       });
-      setMusicos(musicos2);
+      setMusicos(jugadores2);
     });
     client({
       method: 'GET',
-      path: '/api/instrumentos'
+      path: '/api/juegos'
     }).done(function (response) {
-      var instrumentos2 = [];
-      response.entity._embedded.instrumentos.map(function (instrumento) {
-        instrumentos2.push({
-          value: instrumento._links.self.href.split('/').slice(-1),
-          label: instrumento.nombre
+      var juegos2 = [];
+      response.entity._embedded.juegos.map(function (juego) {
+        juegos2.push({
+          value: juego._links.self.href.split('/').slice(-1),
+          label: juego.nombre
         });
       });
-      setInstrumentos(instrumentos2);
+      setInstrumentos(juegos2);
     });
   }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Nuevo Integrante"), /*#__PURE__*/React.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/React.createElement("label", {
-    htmlFor: "musico"
-  }, "Musico"), /*#__PURE__*/React.createElement("select", {
-    name: "musico",
-    id: "musico",
+    htmlFor: "jugador"
+  }, "Jugador"), /*#__PURE__*/React.createElement("select", {
+    name: "jugador",
+    id: "jugador",
     onChange: function onChange(e) {
-      setIdMusico(e.target.value);
+      setIdJugador(e.target.value);
     }
-  }, musicos.map(function (musico) {
+  }, jugadores.map(function (jugador) {
     return /*#__PURE__*/React.createElement("option", {
-      key: musico.value,
-      value: musico.value
-    }, musico.label);
-  })), /*#__PURE__*/React.createElement("label", null, "Instrumento"), /*#__PURE__*/React.createElement("select", {
-    name: "instrumento",
-    id: "instrumento",
+      key: jugador.value,
+      value: jugador.value
+    }, jugador.label);
+  })), /*#__PURE__*/React.createElement("label", null, "Juego"), /*#__PURE__*/React.createElement("select", {
+    name: "juego",
+    id: "juego",
     onChange: function onChange(e) {
-      setIdInstrumento(e.target.value);
+      setIdJuego(e.target.value);
     }
-  }, instrumentos.map(function (instrumento) {
+  }, juegos.map(function (juego) {
     return /*#__PURE__*/React.createElement("option", {
-      key: instrumento.value,
-      value: instrumento.value
-    }, instrumento.label);
+      key: juego.value,
+      value: juego.value
+    }, juego.label);
   })), /*#__PURE__*/React.createElement("input", {
     type: "submit",
     value: "Nuevo Integrante"
@@ -41611,10 +41611,10 @@ var PageVerEquipo = function PageVerEquipo() {
     border: "1"
   }, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Nombre"), /*#__PURE__*/React.createElement("td", null, equipo.nombre)))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement("h2", null, "integrantes"), /*#__PURE__*/React.createElement("table", {
     border: "1"
-  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Musico"), /*#__PURE__*/React.createElement("th", null, "Instrumento"))), /*#__PURE__*/React.createElement("tbody", null, integrantes.map(function (integrante) {
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "Jugador"), /*#__PURE__*/React.createElement("th", null, "Juego"))), /*#__PURE__*/React.createElement("tbody", null, integrantes.map(function (integrante) {
     return /*#__PURE__*/React.createElement("tr", {
       key: integrante.ID
-    }, /*#__PURE__*/React.createElement("td", null, integrante.MUSICO), /*#__PURE__*/React.createElement("td", null, integrante.INSTRUMENTO));
+    }, /*#__PURE__*/React.createElement("td", null, integrante.JUGADOR), /*#__PURE__*/React.createElement("td", null, integrante.JUEGO));
   }))), /*#__PURE__*/React.createElement("hr", null), /*#__PURE__*/React.createElement(Link, {
     to: "/ver-equipo/".concat(id, "/nuevo-integrante")
   }, "Agregar integrante"), " |", /*#__PURE__*/React.createElement(Link, {

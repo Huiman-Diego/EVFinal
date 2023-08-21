@@ -57,8 +57,6 @@ public class DatabaseLoader implements CommandLineRunner {
 		Integrante intLuois = new Integrante(bFnatic, mLuois, iCandyCrush);
 		this.repositoryN.save(intLuois);
 
-
 	}
 
-	
 }

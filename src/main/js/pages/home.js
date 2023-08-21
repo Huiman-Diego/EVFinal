@@ -41,7 +41,6 @@ class PageHome extends React.Component {
 						<Link to="/nuevo-equipo">Nuevo Equipo</Link>
 					</div>
 				</div>
-
 			</>
 		)
 	}

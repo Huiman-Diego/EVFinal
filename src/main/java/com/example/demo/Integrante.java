@@ -62,7 +62,4 @@ public class Integrante {
     public void setJuego(Juego juego) {
         this.juego = juego;
     }
-
-	
-
 }
